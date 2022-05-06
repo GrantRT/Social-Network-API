@@ -3,14 +3,14 @@ const { Thought, Reaction, User } = require('../models');
 const thoughtController = {
   // Get all thoughts
   getAllThoughts(req, res) {
-    User.find()
+    Thought.find()
       .then((thought) => res.json(thought))
       .catch((err) => res.status(500).json(err));
   },
 
   // Get one thought by ID
   getThoughtById({ params }, res) {
-    User.findOne({ _id: params.id })
+    Thought.findOne({ _id: params.id })
       .populate('reactions')
       .select('-__v')
       .then((thought) => {
